@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Text Summarizer</title>
+  <style>
+    body {
+      width: 600px;  /* Increased from 400px */
+      min-height: 600px;  /* Added minimum height */
+      padding: 24px;  /* Increased padding */
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;  /* Increased gap */
+      height: 100%;
+    }
+    
+    h2 {
+      margin: 0 0 16px 0;
+      font-size: 24px;  /* Increased font size */
+      color: #2c3e50;
+    }
+    
+    h3 {
+      font-size: 18px;  /* Increased font size */
+      margin: 0;
+      color: #34495e;
+    }
+    
+    textarea {
+      width: 100%;
+      height: 180px;  /* Increased height */
+      resize: vertical;
+      padding: 12px;  /* Increased padding */
+      font-size: 15px;  /* Increased font size */
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+    }
+    
+    button {
+      padding: 10px 20px;  /* Increased padding */
+      cursor: pointer;
+      background: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;  /* Increased font size */
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background: #3367d6;
+    }
+    
+    #summary {
+      margin-top: 16px;
+      padding: 16px;  /* Increased padding */
+      background: #f8f9fa;
+      border-radius: 6px;
+      min-height: 80px;  /* Increased min-height */
+      font-size: 15px;  /* Increased font size */
+      line-height: 1.5;  /* Added line height */
+      border: 1px solid #e9ecef;
+    }
+    
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;  /* Added margin */
+    }
+    
+    .clear-history {
+      padding: 6px 12px;
+      font-size: 14px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .clear-history:hover {
+      background: #c82333;
+    }
+    
+    .history-item {
+      padding: 12px;  /* Increased padding */
+      background: #f8f9fa;
+      margin-bottom: 12px;  /* Increased margin */
+      border-radius: 6px;
+      border: 1px solid #e9ecef;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .empty-history {
+      color: #6c757d;
+      font-style: italic;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .settings {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .settings label {
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    select {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+    
+    #history-list {
+      max-height: 200px;  /* Added max height */
+      overflow-y: auto;  /* Added scroll for overflow */
+      padding-right: 4px;  /* Added padding for scrollbar */
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>AI Text Summarizer</h2>
+    <textarea id="input" placeholder="Enter or paste text to summarize..."></textarea>
+    <div class="button-group">
+      <button id="summarize">Summarize</button>
+      <button id="copy">Copy Summary</button>
+    </div>
+    <div id="summary"></div>
+    
+    <div class="settings">
+      <h3>Settings</h3>
+      <label>
+        Summary Length:
+        <select id="length">
+          <option value="short">Short</option>
+          <option value="medium" selected>Medium</option>
+          <option value="long">Long</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="history">
+      <div class="history-header">
+        <h3>Recent Summaries</h3>
+        <button id="clear-history" class="clear-history">Clear History</button>
+      </div>
+      <div id="history-list"></div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
